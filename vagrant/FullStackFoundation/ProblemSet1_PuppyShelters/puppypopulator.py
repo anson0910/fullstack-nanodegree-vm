@@ -1,14 +1,14 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
  
-from puppies import Base, Shelter, Puppy
+from database_setup import Base, Shelter, Puppy
 #from flask.ext.sqlalchemy import SQLAlchemy
 from random import randint
 import datetime
 import random
 
 
-engine = create_engine('sqlite:///puppyshelter.db')
+engine = create_engine('sqlite:///puppies.db')
 
 Base.metadata.bind = engine
  
@@ -33,7 +33,7 @@ session.add(shelter4)
 shelter5 = Shelter(name = "Palo Alto Humane Society" ,address = "1149 Chestnut St." ,city = "Menlo Park", state = "California" ,zipCode = "94025", website = "paloaltohumane.org")
 session.add(shelter5)
 
-
+session.commit()
 #Add Puppies
 
 male_names = ["Bailey", "Max", "Charlie", "Buddy","Rocky","Jake", "Jack", "Toby", "Cody", "Buster", "Duke", "Cooper", "Riley", "Harley", "Bear", "Tucker", "Murphy", "Lucky", "Oliver", "Sam", "Oscar", "Teddy", "Winston", "Sammy", "Rusty", "Shadow", "Gizmo", "Bentley", "Zeus", "Jackson", "Baxter", "Bandit", "Gus", "Samson", "Milo", "Rudy", "Louie", "Hunter", "Casey", "Rocco", "Sparky", "Joey", "Bruno", "Beau", "Dakota", "Maximus", "Romeo", "Boomer", "Luke", "Henry"]

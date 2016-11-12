@@ -25,12 +25,12 @@ class Puppy(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(80), nullable=False)
+    gender = Column(String(6))
     dateOfBirth = Column(Date)
     picture = Column(String)
-    gender = Column(String(6))
-    weight = Column(Numeric(10))
     shelter_id = Column(Integer, ForeignKey('shelter.id'))
     shelter = relationship(Shelter)
+    weight = Column(Numeric(10))
 
 
 engine = create_engine('sqlite:///puppies.db')
