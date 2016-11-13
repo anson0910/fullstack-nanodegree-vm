@@ -1,5 +1,3 @@
-import os
-import sys
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -25,6 +23,18 @@ class MenuItem(Base):
     course = Column(String(250))
     restaurant_id = Column(Integer, ForeignKey('restaurant.id'))
     restaurant = relationship(Restaurant)
+
+    # Add this serialize function to be able to send JSON objects in a
+    # serializable format
+    @property
+    def serialize(self):
+        return {
+            'name': self.name,
+            'description': self.description,
+            'id': self.id,
+            'price': self.price,
+            'course': self.course,
+        }
 
 
 engine = create_engine('sqlite:///restaurantmenu.db')
