@@ -1,6 +1,4 @@
-import os
-import sys
-from sqlalchemy import Column, ForeignKey, Integer, String, Date, Numeric
+from sqlalchemy import Column, ForeignKey, Integer, String, Date, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
@@ -30,7 +28,7 @@ class Puppy(Base):
     picture = Column(String)
     shelter_id = Column(Integer, ForeignKey('shelter.id'))
     shelter = relationship(Shelter)
-    weight = Column(Numeric(10))
+    weight = Column(Float)
 
 
 engine = create_engine('sqlite:///puppies.db')
